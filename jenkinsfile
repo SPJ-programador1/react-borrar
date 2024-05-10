@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+  tools {nodejs "nodejs"}
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Paso para clonar el repositorio
+                checkout scm
+            }
+        }
+        stage('Install dependencies') {
+            steps {
+                // Instalar las dependencias de tu proyecto, por ejemplo, usando npm
+                sh 'npm i'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Construir la aplicación con Vite
+                sh 'npm run build'
+            }
+        }
+        stage('Copy to specified directory') {
+            steps {
+
+                // Borrar archivos existentes en el directorio destino
+                sh 'rm -rf /var/www/html/reactvite/*'
+
+                // Copiar el resultado del build a una ruta específica
+                sh 'mkdir -p /var/www/html/reactvite'
+                sh 'cp -r dist/* /var/www/html/reactvite'
+            }
+        }
+    }
+}
