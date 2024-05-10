@@ -4,25 +4,25 @@ pipeline {
   tools {nodejs "nodejs"}
 
     stages {
-        stage('Checkout') {
+        stage('🐑 Checkout') {
             steps {
                 // Paso para clonar el repositorio
                 checkout scm
             }
         }
-        stage('Install dependencies') {
+        stage('⬇️ Install dependencies') {
             steps {
                 // Instalar las dependencias de tu proyecto, por ejemplo, usando npm
                 sh 'npm i'
             }
         }
-        stage('Build') {
+        stage('🔨 Build') {
             steps {
                 // Construir la aplicación con Vite
                 sh 'npm run build'
             }
         }
-        stage('Copy to specified directory') {
+        stage('🖨️ Copy to specified directory') {
             steps {
 
                 // Borrar archivos existentes en el directorio destino
